@@ -1,0 +1,1 @@
+ansible-playbook -i hosts ./provision_vagrant.yml --private-key=.vagrant/machines/default/virtualbox/private_key 

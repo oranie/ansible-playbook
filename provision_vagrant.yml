@@ -1,0 +1,25 @@
+---
+- hosts: servers
+  sudo: true
+  user: vagrant
+  tasks:
+  - name: install base_packages
+    yum: name={{ item }} state=present
+    with_items:
+        - "{{ base.packages }}"
+
+  - name: golang dir create
+    file: path=/home/"{{ansible_ssh_user}}"/go state=directory owner="{{ansible_ssh_user}}" group=root mode=0755
+  - name: golang path setting
+    copy: src=./bashrc dest=/home/{{ansible_ssh_user}}/.bashrc mode=0644
+
+
+  vars:
+    base:
+        packages:
+        - vim
+        - golang
+        - git
+        - htop
+        - dstat
+        - nginx

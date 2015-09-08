@@ -1,0 +1,16 @@
+---
+- hosts: servers
+  sudo: true
+  user: vagrant
+  tasks:
+  - name: install base_packages
+    yum: name={{ item }} state=present
+    with_items:
+        - "{{ base.packages }}"
+
+  vars:
+    base:
+        packages:
+        - htop
+        - dstat
+        - nginx
